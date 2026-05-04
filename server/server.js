@@ -8,8 +8,12 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoute");
 const taskRoutes = require("./routes/taskRoute");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:"http://localhost:3000",
+  credentials:true
+}));
 
 // routes
 
@@ -17,6 +21,7 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.send("API working");
