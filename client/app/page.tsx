@@ -23,10 +23,10 @@ export default function Home() {
     <div className="min-h-screen w-screen relative">
     <div className="h-screen w-screen  z-20 absolute flex flex-col justify-center items-center ">
      <Image src="/images/ethara.png" alt="logo" width={500} height={500} className=" h-20 object-contain" />
-      <h1 className="text-8xl font-light bg-clip-text bg-linear-to-t from-gray-700 to-gray-100 text-transparent">Tasktogether</h1>
+      <h1 className="text-8xl font-light bg-clip-text bg-linear-to-t from-neutral-800 to-gray-100 text-transparent">Tasktogether</h1>
       <p className="text-black/50 text-2xl mt-4">Task Management Built for the Modern Enterprise.</p>
       <Link href="/login">
-        <button className="bg-white text-primary px-8 py-4 rounded-full font-bold mt-8 hover:scale-105 transition-all duration-300">Get Started</button>
+        <button className="bg-white text-primary px-8 py-3 rounded-full font-bold mt-8 hover:scale-105 transition-all duration-300">Get Started</button>
       </Link>
     </div>
       <div className="absolute top-0 left-0 inset-0 h-screen w-screen  p-2">
