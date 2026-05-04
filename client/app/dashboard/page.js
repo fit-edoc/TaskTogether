@@ -50,48 +50,56 @@ export default function Dashboard() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 font-sans">
-      <nav className="flex items-center justify-between p-4 bg-gray-800 text-white shadow-md">
-        <h1 className="text-xl font-bold tracking-wide">Task-Together</h1>
-        <div className="flex items-center gap-4">
-          <span className="font-medium">Welcome, {user?.name}</span>
-          <button onClick={logout} className="px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 transition-colors text-white font-semibold text-sm">Logout</button>
+    <div className="min-h-screen font-sans selection:bg-primary/30">
+      <nav className="flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
+        <h1 className="text-2xl font-semibold tracking-wide bg-clip-text text-transparent bg-primary">
+          TaskTogether
+        </h1>
+        <div className="flex items-center gap-6">
+          <span className="font-medium text-gray-700">Welcome, {user?.name}</span>
+          <button onClick={logout} className="px-5 py-2 rounded-3xl bg-red-500 hover:bg-red-500 hover:text-white text-black transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">
+            Logout
+          </button>
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto p-6 mt-6">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Your Projects</h2>
-          {user?.role === 'admin' && (
-            <button 
-              onClick={() => setShowModal(true)}
-              className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-sm"
-            >
-              + Create Project
-            </button>
-          )}
+      <main className="max-w-7xl mx-auto p-6 md:p-10 mt-6">
+        <div className="flex justify-between items-center mb-10">
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Your Projects</h2>
+          <button 
+            onClick={() => setShowModal(true)}
+            className="px-6 py-3 bg-black hover:opacity-90 text-white rounded-3xl font-semibold transition-all duration-300 shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
+          >
+            + Create Project
+          </button>
         </div>
 
         {projects.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-xl text-gray-500 font-medium">No projects found. Create one to get started!</h3>
+          <div className="text-center py-20 bg-white/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/60">
+            <h3 className="text-2xl text-gray-600 font-medium mb-2">No projects found</h3>
+            <p className="text-gray-500">Create one to get started and collaborate!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => {
               const userId = user._id || user.id;
               const myRole = project.members.find(m => m.user === userId)?.role;
               return (
                 <Link href={`/dashboard/projects?id=${project._id}`} key={project._id}>
-                  <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-200 cursor-pointer h-full flex flex-col">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-semibold text-gray-800 line-clamp-1">{project.name}</h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${myRole === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                  <div className="bg-white/60 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:bg-white/80 transition-all duration-300 border border-white cursor-pointer h-full flex flex-col group">
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="text-2xl font-bold text-gray-800 line-clamp-1 group-hover:text-primary transition-colors">{project.name}</h3>
+                      <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${myRole === 'admin' ? 'bg-primary/10 text-primary border border-primary/20' : 'bg-secondary/10 text-secondary border border-secondary/20'}`}>
                         {myRole === 'admin' ? 'Admin' : 'Member'}
                       </span>
                     </div>
-                    <p className="text-gray-600 text-sm flex-grow line-clamp-3 mb-4">{project.description}</p>
-                    <div className="text-sm text-gray-500 font-medium pt-4 border-t border-gray-100">
+                    <p className="text-gray-600 text-base flex-grow line-clamp-3 mb-6 leading-relaxed">{project.description}</p>
+                    <div className="flex items-center text-sm text-gray-500 font-medium pt-5 border-t border-gray-200/50">
+                      <div className="flex -space-x-2 mr-3">
+                       
+                         <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white"></div>
+                         {project.members.length > 1 && <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"></div>}
+                      </div>
                       {project.members.length} Member{project.members.length !== 1 ? 's' : ''}
                     </div>
                   </div>
@@ -104,43 +112,43 @@ export default function Dashboard() {
 
       {/* Create Project Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md transform transition-all">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">Create New Project</h3>
+        <div className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl p-8 w-full max-w-lg transform transition-all border border-white">
+            <h3 className="text-3xl font-bold text-gray-900 mb-8">Create New Project</h3>
             <form onSubmit={handleCreateProject}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Project Name</label>
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Project Name</label>
                 <input 
                   type="text" 
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className="w-full px-5 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                   value={newProject.name}
                   onChange={e => setNewProject({...newProject, name: e.target.value})}
                   placeholder="E.g., Website Redesign"
                 />
               </div>
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">Description</label>
                 <textarea 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none h-24"
+                  className="w-full px-5 py-4 bg-white/50 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none h-32 text-gray-800 placeholder-gray-400"
                   value={newProject.description}
                   onChange={e => setNewProject({...newProject, description: e.target.value})}
                   placeholder="Brief description of the project..."
                 />
               </div>
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-4">
                 <button 
                   type="button" 
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                  className="px-6 py-3 text-gray-600 hover:bg-gray-100 rounded-3xl font-semibold transition-colors"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-sm"
+                  className="px-8 py-3 bg-black  hover:opacity-90 text-white rounded-3xl font-semibold transition-all shadow-md hover:shadow-primary/30"
                 >
-                  Create
+                  Create Project
                 </button>
               </div>
             </form>

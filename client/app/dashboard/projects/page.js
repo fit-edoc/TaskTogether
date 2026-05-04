@@ -121,38 +121,38 @@ function ProjectDashboardContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 font-sans">
-      <nav className="flex items-center justify-between p-4 bg-gray-800 text-white shadow-md">
+    <div className="min-h-screen font-sans selection:bg-primary/30">
+      <nav className="flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
         <div className="flex items-center gap-4">
-          <button onClick={() => router.push("/dashboard")} className="text-gray-300 hover:text-white transition-colors">&larr; Back</button>
-          <h1 className="text-xl font-bold tracking-wide">{project.name}</h1>
+          <button onClick={() => router.push("/dashboard")} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 hover:bg-white/80 transition-all text-sm font-medium border border-gray-200/50 text-gray-700 shadow-sm">&larr; Back</button>
+          <h1 className="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-primary underline underline-offset-8 decoration-primary">{project.name} <span className="text-sm font-semibold text-gray-500">current project</span></h1>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="font-medium text-sm bg-gray-700 px-3 py-1 rounded-full">Role: {myRole}</span>
-          <button onClick={logout} className="px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 transition-colors text-white font-semibold text-sm">Logout</button>
+        <div className="flex items-center gap-6">
+          <span className="font-medium text-sm bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider">Role: {myRole}</span>
+          <button onClick={logout} className="px-5 py-2 rounded-3xl bg-red-500/10 hover:bg-red-500 hover:text-white text-red-600 transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">Logout</button>
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto p-6 mt-6">
+      <main className="max-w-7xl mx-auto p-6 md:p-10 mt-6">
         {stats && myRole === 'admin' && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-              <h4 className="text-gray-500 text-sm font-medium">Total Tasks</h4>
-              <p className="text-3xl font-bold text-gray-800 mt-2">{stats.totalTasks}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+            <div className="bg-white/60 backdrop-blur-xl p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center">
+              <h4 className="text-gray-500 text-sm font-semibold tracking-wide uppercase">Total Tasks</h4>
+              <p className="text-4xl font-black text-gray-800 mt-2">{stats.totalTasks}</p>
             </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-              <h4 className="text-gray-500 text-sm font-medium">Completed</h4>
-              <p className="text-3xl font-bold text-green-600 mt-2">
+            <div className="bg-white/60 backdrop-blur-xl p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center">
+              <h4 className="text-gray-500 text-sm font-semibold tracking-wide uppercase">Completed</h4>
+              <p className="text-4xl font-black text-green-500 mt-2">
                 {stats.tasksByStatus?.find(s => s._id === 'done')?.count || 0}
               </p>
             </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-              <h4 className="text-gray-500 text-sm font-medium">Overdue</h4>
-              <p className="text-3xl font-bold text-red-600 mt-2">{stats.overdueTasks?.length || 0}</p>
+            <div className="bg-white/60 backdrop-blur-xl p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center">
+              <h4 className="text-gray-500 text-sm font-semibold tracking-wide uppercase">Overdue</h4>
+              <p className="text-4xl font-black text-red-500 mt-2">{stats.overdueTasks?.length || 0}</p>
             </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-              <h4 className="text-gray-500 text-sm font-medium">In Progress</h4>
-              <p className="text-3xl font-bold text-blue-600 mt-2">
+            <div className="bg-white/60 backdrop-blur-xl p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center">
+              <h4 className="text-gray-500 text-sm font-semibold tracking-wide uppercase">In Progress</h4>
+              <p className="text-4xl font-black text-primary mt-2">
                 {stats.tasksByStatus?.find(s => s._id === 'in-progress')?.count || 0}
               </p>
             </div>
@@ -160,12 +160,12 @@ function ProjectDashboardContent() {
         )}
 
         {myRole === 'admin' && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Team Progress</h2>
+          <div className="mb-12">
+            <h2 className="text-3xl font-extrabold text-gray-900 mb-6 tracking-tight">Team Progress</h2>
             {project.members.filter(m => m.role !== 'admin').length === 0 ? (
-              <p className="text-gray-500 text-sm">No members added yet.</p>
+              <p className="text-gray-500 text-base bg-white/40 p-6 rounded-3xl border border-white">No members added yet.</p>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {project.members.filter(m => m.role !== 'admin').map(m => {
                   const userObj = allUsers.find(u => String(u._id) === String(m.user));
                   const memberTasks = tasks.filter(t => String(t.assignedTo) === String(m.user));
@@ -174,14 +174,14 @@ function ProjectDashboardContent() {
                   const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
                   
                   return (
-                    <div key={m.user} className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-                      <h3 className="font-semibold text-gray-800 mb-2">{userObj ? userObj.name : 'Loading...'}</h3>
-                      <div className="flex justify-between text-sm text-gray-600 mb-1">
+                    <div key={m.user} className="bg-white/60 backdrop-blur-md p-6 rounded-3xl shadow-sm border border-white">
+                      <h3 className="font-bold text-gray-800 mb-3 text-lg">{userObj ? userObj.name : 'Loading...'}</h3>
+                      <div className="flex justify-between text-sm text-gray-600 mb-2">
                         <span>{completed} / {total} Tasks Completed</span>
-                        <span className="font-bold text-blue-600">{percentage}%</span>
+                        <span className="font-bold text-primary">{percentage}%</span>
                       </div>
-                      <div className="w-full bg-gray-100 rounded-full h-2 mb-1 overflow-hidden">
-                        <div className="bg-blue-600 h-2 rounded-full transition-all duration-500" style={{ width: `${percentage}%` }}></div>
+                      <div className="w-full bg-gray-200/50 rounded-full h-3 mb-1 overflow-hidden">
+                        <div className="bg-primary h-3 rounded-full transition-all duration-700 ease-out" style={{ width: `${percentage}%` }}></div>
                       </div>
                     </div>
                   );
@@ -192,18 +192,18 @@ function ProjectDashboardContent() {
         )}
 
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Tasks</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Tasks</h2>
           {myRole === "admin" && (
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <button 
                 onClick={() => setShowMemberModal(true)}
-                className="px-5 py-2.5 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-all shadow-sm"
+                className="px-6 py-3 bg-black hover:bg-white hover:text-black text-white border border-gray-200 rounded-3xl font-semibold transition-all shadow-sm hover:shadow-md"
               >
                 Manage Members
               </button>
               <button 
                 onClick={() => setShowTaskModal(true)}
-                className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-sm"
+                className="px-6 py-3 bg-primary hover:opacity-90 text-white rounded-3xl font-semibold transition-all shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
               >
                 + Create Task
               </button>
@@ -212,42 +212,47 @@ function ProjectDashboardContent() {
         </div>
 
         {tasks.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-xl text-gray-500 font-medium">No tasks found.</h3>
+          <div className="text-center py-20 bg-white/40 backdrop-blur-xl rounded-3xl shadow-sm border border-white/60">
+            <h3 className="text-2xl text-gray-600 font-medium mb-2">No tasks found</h3>
+            <p className="text-gray-500">Create a task to kick off the project.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {['todo', 'in-progress', 'done'].map(status => (
-              <div key={status} className="bg-gray-50 rounded-xl p-4 border border-gray-200 min-h-[300px]">
-                <h3 className="text-lg font-bold text-gray-700 mb-4 capitalize">{status.replace('-', ' ')}</h3>
+              <div key={status} className="bg-primary/50 backdrop-blur-md rounded-3xl p-6 border border-white min-h-[400px]">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 capitalize px-2 flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${status === 'todo' ? 'bg-gray-400' : status === 'in-progress' ? 'bg-yellow-500' : 'bg-green-500'}`}></div>
+                  {status.replace('-', ' ')}
+                  <span className="ml-auto bg-white/50 px-3 py-0.5 rounded-full text-sm">{tasks.filter(t => t.status === status).length}</span>
+                </h3>
                 <div className="flex flex-col gap-4">
                   {tasks.filter(t => t.status === status).map(task => {
                     const assignee = allUsers.find(u => String(u._id) === String(task.assignedTo));
                     return (
-                    <div key={task._id} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                      <div className="flex justify-between items-start">
-                        <h4 className="font-semibold text-gray-800">{task.title}</h4>
+                    <div key={task._id} className="bg-white/80 backdrop-blur-sm p-5 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-white hover:shadow-[0_8px_25px_rgb(0,0,0,0.06)] transition-all">
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-bold text-gray-800 text-lg leading-tight">{task.title}</h4>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1 mb-4 leading-relaxed">{task.description}</p>
+                      <div className="flex flex-wrap gap-2 items-center mb-4">
+                        <span className={`text-xs font-extrabold px-3 py-1 rounded-full ${task.priority === 'high' ? 'bg-red-100 text-red-600' : task.priority === 'low' ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'}`}>
+                          {task.priority?.toUpperCase() || "MEDIUM"}
+                        </span>
                         {assignee && (
-                          <span className="text-xs bg-purple-100 text-purple-700 font-medium px-2 py-1 rounded">
+                          <span className="text-xs bg-primary/10 border border-black/10 text-primary font-bold px-3 py-1 rounded-full">
                             {assignee.name}
                           </span>
                         )}
-                      </div>
-                      <p className="text-sm text-gray-600 mt-2 mb-3">{task.description}</p>
-                      <div className="flex justify-between items-center mb-4">
-                        <span className={`text-xs font-bold px-2 py-1 rounded ${task.priority === 'high' ? 'bg-red-100 text-red-700' : task.priority === 'low' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                          {task.priority?.toUpperCase() || "MEDIUM"}
-                        </span>
                         {task.dueDate && (
-                          <span className="text-xs text-gray-500 font-medium">
-                            Due: {new Date(task.dueDate).toLocaleDateString()}
+                          <span className="text-xs text-gray-500 font-medium ml-auto border border-black/30 bg-gray-100 px-3 py-1 rounded-full">
+                            {new Date(task.dueDate).toLocaleDateString(undefined, {month:'short', day:'numeric'})}
                           </span>
                         )}
                       </div>
                       
-                      <div className="pt-3 border-t border-gray-100">
+                      <div className="pt-4 border-t border-gray-200/50">
                         <select 
-                          className="w-full text-sm bg-gray-50 border border-gray-300 rounded px-2 py-1 outline-none"
+                          className="w-full text-sm bg-white border border-gray-200 rounded-xl px-3 py-2 outline-none focus:ring-2 focus:ring-primary/20 transition-all text-gray-700 font-medium appearance-none"
                           value={task.status}
                           onChange={(e) => handleStatusChange(task._id, e.target.value)}
                         >
@@ -276,8 +281,9 @@ function ProjectDashboardContent() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
                 <input 
                   type="text" 
+                  placeholder="enter the title of project"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className="w-full px-4 py-2 border placeholder:text-black/20 text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                   value={newTask.title}
                   onChange={e => setNewTask({...newTask, title: e.target.value})}
                 />
@@ -285,7 +291,8 @@ function ProjectDashboardContent() {
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
                 <textarea 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none h-20"
+                placeholder="enter the description of the your project"
+                  className="w-full px-4 py-2 border placeholder:text-black/20 text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none h-20"
                   value={newTask.description}
                   onChange={e => setNewTask({...newTask, description: e.target.value})}
                 />
@@ -294,11 +301,11 @@ function ProjectDashboardContent() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
                   <select 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 border bg-primary/20 placeholder:text-black/20 text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
                     value={newTask.priority}
                     onChange={e => setNewTask({...newTask, priority: e.target.value})}
                   >
-                    <option value="low">Low</option>
+                    <option value="low" className="rounded-lg">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                   </select>
@@ -307,7 +314,7 @@ function ProjectDashboardContent() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
                   <input 
                     type="date" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-4 py-2 border text-black placeholder:text-black/20 border-gray-300 rounded-lg focus:ring-2 focus:text-black focus:border-primary outline-none"
                     value={newTask.dueDate}
                     onChange={e => setNewTask({...newTask, dueDate: e.target.value})}
                   />
@@ -318,7 +325,7 @@ function ProjectDashboardContent() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Assign To</label>
                 <select 
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  className="w-full px-4 py-2 border placeholder:text-black/20 text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                   value={newTask.assignedTo}
                   onChange={e => setNewTask({...newTask, assignedTo: e.target.value})}
                 >
@@ -337,13 +344,13 @@ function ProjectDashboardContent() {
                 <button 
                   type="button" 
                   onClick={() => setShowTaskModal(false)}
-                  className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                  className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-full font-medium transition-colors"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-sm"
+                  className="px-5 py-2 bg-black hover:bg-black/80 text-white rounded-full font-medium transition-colors shadow-sm"
                 >
                   Create Task
                 </button>
@@ -363,7 +370,7 @@ function ProjectDashboardContent() {
               <label className="block text-sm font-medium text-gray-700 mb-2">Search Users to Add</label>
               <input 
                 type="text" 
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none mb-3"
+                className="w-full px-4 py-2 border placeholder:text-black/20 text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none mb-3"
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Search by name or email..."
@@ -385,7 +392,7 @@ function ProjectDashboardContent() {
                           </div>
                           <button 
                             onClick={() => handleAddMemberDirect(u._id)}
-                            className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700"
+                            className="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/80"
                           >
                             Add
                           </button>
