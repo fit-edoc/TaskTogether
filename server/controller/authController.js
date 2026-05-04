@@ -15,7 +15,12 @@ exports.register = async (req, res) => {
 
   res.status(201).json({
   msg:"User created",
-    user,
+  user: {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role
+  },
     token: generateToken(user._id),
   });
   
@@ -36,7 +41,12 @@ try {
   if (!match) return res.status(400).json({ msg: "please provide correct password" });
   if(user && match){
     res.json({
-      user,
+   user: {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role
+  },
       token: generateToken(user._id),
     });
   }
@@ -45,4 +55,13 @@ try {
   console.error("Login Error:", error.message);
     return res.status(500).json({ msg: "Internal Server Error", error: error.message });
 }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, "-password");
+    res.status(200).json({ users });
+  } catch (error) {
+    res.status(500).json({ msg: "Failed to fetch users", error: error.message });
+  }
 };

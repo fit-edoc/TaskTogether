@@ -21,10 +21,14 @@ exports.getDashboard = async (req, res) => {
     }
 
     // 👑 Admin sees all, member sees only assigned tasks
+    const mongoose = require("mongoose");
     const filter =
       member.role === "admin"
-        ? { projectId }
-        : { projectId, assignedTo: req.user.id };
+        ? { projectId: new mongoose.Types.ObjectId(projectId) }
+        : { 
+            projectId: new mongoose.Types.ObjectId(projectId), 
+            assignedTo: new mongoose.Types.ObjectId(req.user.id) 
+          };
 
     // 📊 1. Total tasks
     const totalTasks = await Task.countDocuments(filter);
