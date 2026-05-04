@@ -11,7 +11,7 @@ const taskRoutes = require("./routes/taskRoute");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use(express.json());
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"*",
   credentials:true
 }));
 
