@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import { loginUser } from "@/services/authService";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import {toast} from 'react-toastify';
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -24,8 +26,10 @@ export default function Login() {
       const data = await loginUser(form);
       login(data);
       router.push("/dashboard");
+      toast.success("Login successful");
     } catch (err) {
-      alert(err.response?.data?.msg || "Login failed");
+     
+      toast.error(err.response?.data?.msg || "Login failed");
     } finally {
       setLoading(false);
     }

@@ -37,9 +37,11 @@ export default function Dashboard() {
       await createProject(newProject);
       setNewProject({ name: "", description: "" });
       setShowModal(false);
+      toast.success("Project created successfully");
       fetchProjects();
     } catch (err) {
-      alert(err.response?.data?.msg || "Failed to create project");
+      
+      toast.error(err.response?.data?.msg || "Failed to create project");
     }
   };
 

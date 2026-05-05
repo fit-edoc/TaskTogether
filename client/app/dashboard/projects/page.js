@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getProjects, addMember, removeMember } from "@/services/projectService";
 import { getAllUsers } from "@/services/authService";
 import { getTasks, createTask, updateTask, getDashboardStats } from "@/services/taskService";
-
+import { toast } from "react-toastify";
 function ProjectDashboardContent() {
   const { user, loading, logout } = useContext(AuthContext);
   const router = useRouter();
@@ -83,7 +83,8 @@ function ProjectDashboardContent() {
       setShowTaskModal(false);
       fetchProjectData();
     } catch (err) {
-      alert(`Error: ${err.response?.data?.error || err.response?.data?.msg || err.message || "Failed to create task"}`);
+      toast.error(err.response?.data?.error || err.response?.data?.msg || err.message || "Failed to create task");
+
     }
   };
 
@@ -92,7 +93,8 @@ function ProjectDashboardContent() {
       await updateTask(taskId, { status: newStatus });
       fetchProjectData();
     } catch (err) {
-      alert(err.response?.data?.msg || "Failed to update task");
+     
+      toast.error(err.response?.data?.msg || "Failed to update task")
     }
   };
 
@@ -102,7 +104,8 @@ function ProjectDashboardContent() {
       setSearchTerm("");
       fetchProjectData();
     } catch (err) {
-      alert(err.response?.data?.msg || "Failed to add member");
+     
+      toast.error(err.response?.data?.msg || "Failed to add member");
     }
   };
 
@@ -112,7 +115,8 @@ function ProjectDashboardContent() {
       await removeMember(projectId, userId);
       fetchProjectData();
     } catch (err) {
-      alert(err.response?.data?.msg || "Failed to remove member");
+      
+      toast.error(err.response?.data?.msg || "Failed to remove member");
     }
   };
 

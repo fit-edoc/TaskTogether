@@ -5,6 +5,7 @@ import { registerUser } from "@/services/authService";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {toast} from 'react-toastify';
 
 export default function Register() {
   const router = useRouter();
@@ -21,9 +22,10 @@ export default function Register() {
     setLoading(true);
     try {
       await registerUser(form);
+      toast.success("Account created successfully");
       router.push("/login");
     } catch (err) {
-      alert(err.response?.data?.msg || "Register failed");
+      toast.error(err.response?.data?.msg || "Register failed");
     } finally {
       setLoading(false);
     }

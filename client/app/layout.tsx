@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+  import { ToastContainer,Slide} from 'react-toastify';
 import { AuthProvider } from "@/context/AuthContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   description: "Task Management Built for the Modern Enterprise",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +31,19 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
     <AuthProvider>
+       <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Slide}
+/>
           {children}
         </AuthProvider>
         
