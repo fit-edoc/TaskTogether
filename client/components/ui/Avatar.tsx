@@ -1,7 +1,7 @@
 export default function Avatar({ name }: { name: string }) {
   const initial = name?.charAt(0).toUpperCase();
 
-  const getColor = () => {
+  const getColor = () => {0
     const colors = [
       "bg-red-400",
       "bg-blue-400",

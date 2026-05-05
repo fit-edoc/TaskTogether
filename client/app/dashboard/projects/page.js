@@ -125,11 +125,11 @@ function ProjectDashboardContent() {
       <nav className="flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
         <div className="flex items-center gap-4">
           <button onClick={() => router.push("/dashboard")} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 hover:bg-white/80 transition-all text-sm font-medium border border-gray-200/50 text-gray-700 shadow-sm">&larr; Back</button>
-          <h1 className="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-primary underline underline-offset-8 decoration-primary">{project.name} <span className="text-sm font-semibold text-gray-500">current project</span></h1>
+          <h1 className="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-primary underline underline-offset-8 decoration-primary">{project.name}</h1>
         </div>
         <div className="flex items-center gap-6">
-          <span className="font-medium text-sm bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider">Role: {myRole}</span>
-          <button onClick={logout} className="px-5 py-2 rounded-3xl bg-red-500/10 hover:bg-red-500 hover:text-white text-red-600 transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">Logout</button>
+          <span className="font-medium text-sm bg-primary/10 text-primary border border-primary/20 md:px-4  px-4 py-1.5 rounded-full uppercase tracking-wider">Role: {myRole}</span>
+          <button onClick={logout} className="md:px-5 px-2 py-2 rounded-3xl bg-red-500/10 hover:bg-red-500 hover:text-white text-red-600 transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">Logout</button>
         </div>
       </nav>
 
@@ -192,18 +192,18 @@ function ProjectDashboardContent() {
         )}
 
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Tasks</h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight mr-1.5">Tasks</h2>
           {myRole === "admin" && (
-            <div className="flex gap-4">
+            <div className="flex md:gap-4 gap-2">
               <button 
                 onClick={() => setShowMemberModal(true)}
-                className="px-6 py-3 bg-black hover:bg-white hover:text-black text-white border border-gray-200 rounded-3xl font-semibold transition-all shadow-sm hover:shadow-md"
+                className="md:px-6 px-2 py-2 bg-black hover:bg-white hover:text-black text-white border border-gray-200 rounded-3xl font-semibold transition-all shadow-sm hover:shadow-md"
               >
                 Manage Members
               </button>
               <button 
                 onClick={() => setShowTaskModal(true)}
-                className="px-6 py-3 bg-primary hover:opacity-90 text-white rounded-3xl font-semibold transition-all shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
+                className="md:px-6 px-2 py-2 bg-primary hover:opacity-90 text-white rounded-3xl font-semibold transition-all shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
               >
                 + Create Task
               </button>

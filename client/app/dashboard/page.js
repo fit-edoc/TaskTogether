@@ -52,7 +52,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen font-sans selection:bg-primary/30">
       <nav className="flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
-        <h1 className="text-2xl font-semibold tracking-wide bg-clip-text text-transparent bg-primary">
+        <h1 className="md:text-2xl text-sm font-semibold tracking-wide bg-clip-text text-transparent bg-primary">
           TaskTogether
         </h1>
         <div className="flex items-center gap-6">
@@ -68,7 +68,7 @@ export default function Dashboard() {
           <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Your Projects</h2>
           <button 
             onClick={() => setShowModal(true)}
-            className="px-6 py-3 bg-black hover:opacity-90 text-white rounded-3xl font-semibold transition-all duration-300 shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
+            className="md:px-6 px-2 py-3 bg-black hover:opacity-90 text-white rounded-3xl font-semibold transition-all duration-300 shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
           >
             + Create Project
           </button>
