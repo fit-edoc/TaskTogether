@@ -44,14 +44,14 @@ export default function Register() {
       >
         <div className="bg-white/70 backdrop-blur-xl p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50">
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Create Account</h1>
+            <h1 className="text-4xl font-normal text-gray-900 mb-2">Create Account</h1>
             <p className="text-gray-500">Join TaskTogether today</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <input 
-                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
+                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-2 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                 placeholder="Full Name"
                 required
                 onChange={(e) =>
@@ -62,7 +62,7 @@ export default function Register() {
 
             <div>
               <input 
-                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
+                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-2 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                 placeholder="Email Address"
                 type="email"
                 required
@@ -74,7 +74,7 @@ export default function Register() {
 
             <div>
               <input 
-                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
+                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-2 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                 type="password" 
                 placeholder="Password"
                 required
@@ -87,7 +87,7 @@ export default function Register() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-primary hover:scale-105 hover:opacity-90 text-white font-semibold rounded-3xl py-4 transition-all duration-300 shadow-md hover:shadow-primary/30 disabled:opacity-50"
+              className="w-full bg-primary  hover:scale-105 hover:opacity-90 text-white font-semibold rounded-3xl py-2 transition-all duration-300 shadow-md hover:shadow-primary/30 disabled:opacity-50"
             >
               {loading ? "Creating Account..." : "Sign Up"}
             </button>

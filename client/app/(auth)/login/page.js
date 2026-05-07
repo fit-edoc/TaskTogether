@@ -48,14 +48,14 @@ export default function Login() {
       >
         <div className="bg-white/70 backdrop-blur-xl p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50">
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Welcome Back</h1>
+            <h1 className="text-4xl font-normal text-gray-900 mb-2">Welcome Back</h1>
             <p className="text-gray-500">Sign in to your TaskTogether account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <input
-                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
+                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-2 focus:ring-1 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                 type="email"
                 placeholder="Email Address"
                 required
@@ -69,7 +69,7 @@ export default function Login() {
               <input
                 type="password"
                 required
-                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
+                className="w-full  border border-gray-200 rounded-2xl px-5 py-2 focus:ring-1 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800 placeholder-gray-400"
                 placeholder="Password"
                 onChange={(e) =>
                   setForm({ ...form, password: e.target.value })
@@ -80,7 +80,7 @@ export default function Login() {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-primary hover:scale-105 hover:opacity-90 text-white font-semibold rounded-3xl py-4 transition-all duration-300 shadow-md hover:shadow-primary/30 disabled:opacity-50"
+              className="w-full bg-primary hover:scale-105 hover:opacity-90 text-white font-semibold rounded-3xl py-2 transition-all duration-300 shadow-md hover:shadow-primary/30 disabled:opacity-50"
             >
               {loading ? "Signing In..." : "Sign In"}
             </button>
