@@ -3,9 +3,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { getProjects, createProject } from "@/services/projectService";
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Dashboard() {
   const { user, loading, logout } = useContext(AuthContext);
   const router = useRouter();
@@ -54,13 +55,11 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen font-sans selection:bg-primary/30">
       <nav className="flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
-        <h1 className="md:text-2xl text-sm font-semibold tracking-wide bg-clip-text text-transparent bg-primary">
-          TaskTogether
-        </h1>
+        <Image src="/images/logo.png" alt="Logo" width={200} height={200} className="h-20 w-auto" />
         <div className="flex items-center gap-6">
           <span className="font-medium text-gray-700">Welcome, {user?.name}</span>
-          <button onClick={logout} className="px-5 py-2 rounded-3xl bg-red-500 hover:bg-red-500 hover:text-white text-black transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">
-            Logout
+          <button onClick={logout} className="px-3 py-2 flex items-center gap-2 rounded-3xl bg-red-500 hover:bg-red-500 hover:text-white text-black transition-all duration-300 font-semibold text-sm border border-red-500/20 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/20">
+            Logout <ArrowRight className="text-white bg-black rounded-full p-1" />
           </button>
         </div>
       </nav>
