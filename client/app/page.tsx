@@ -13,13 +13,7 @@ export default function Home() {
       {/* Content */}
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
 
-        <Image
-          src="/images/ethara.png"
-          alt="logo"
-          width={500}
-          height={500}
-          className="h-12 sm:h-16 md:h-20 object-contain"
-        />
+        
 
         <motion.h1 initial={{y:20, filter:'blur(10px)'}} animate={{y:0, filter:'blur(0px)'}} transition={{duration:1}} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light bg-clip-text bg-linear-to-t from-neutral-800 to-gray-100 text-transparent">
           Tasktogether
