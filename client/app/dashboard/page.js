@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import { toast } from "react-toastify";
 import { getProjects, createProject } from "@/services/projectService";
 import Link from "next/link";
 import Image from "next/image";
