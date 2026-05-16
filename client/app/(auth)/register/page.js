@@ -13,7 +13,8 @@ export default function Register() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    role: "member"
   });
   const [loading, setLoading] = useState(false);
 
@@ -82,6 +83,17 @@ export default function Register() {
                   setForm({ ...form, password: e.target.value })
                 }
               />
+            </div>
+
+            <div>
+              <select
+                className="w-full bg-white/50 border border-gray-200 rounded-2xl px-5 py-2 focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-800"
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
+              >
+                <option value="member">Register as Member</option>
+                <option value="admin">Register as Admin</option>
+              </select>
             </div>
 
             <button 

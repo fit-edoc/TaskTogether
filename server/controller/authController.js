@@ -3,15 +3,17 @@ const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
 
 exports.register = async (req, res) => {
- try {
-   const { name, email, password } = req.body;
+  try {
+    console.log("Register Request Body:", req.body);
+    const { name, email, password, role } = req.body;
 
-  const userExists = await User.findOne({ email });
-  if (userExists) return res.status(400).json({ msg: "User exists" });
+    const userExists = await User.findOne({ email });
+    if (userExists) return res.status(400).json({ msg: "User exists" });
 
-  const hashed = await bcrypt.hash(password, 10);
+    const hashed = await bcrypt.hash(password, 10);
 
-  const user = await User.create({ name, email, password: hashed });
+    const user = await User.create({ name, email, password: hashed, role: role || "member" });
+    console.log("Created User Document:", user);
 
   res.status(201).json({
   msg:"User created",
