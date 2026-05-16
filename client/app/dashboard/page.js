@@ -67,12 +67,14 @@ export default function Dashboard() {
       <main className="max-w-7xl mx-auto p-6 md:p-10 mt-6">
         <div className="flex justify-between items-center mb-10">
           <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Your Projects</h2>
-          <button 
-            onClick={() => setShowModal(true)}
-            className="md:px-6 px-2 py-3 bg-black hover:opacity-90 text-white rounded-3xl font-semibold transition-all duration-300 shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
-          >
-            + Create Project
-          </button>
+          {user?.role === "admin" && (
+            <button 
+              onClick={() => setShowModal(true)}
+              className="md:px-6 px-2 py-3 bg-black hover:opacity-90 text-white rounded-3xl font-semibold transition-all duration-300 shadow-md hover:shadow-primary/30 hover:-translate-y-0.5"
+            >
+              + Create Project
+            </button>
+          )}
         </div>
 
         {projects.length === 0 ? (

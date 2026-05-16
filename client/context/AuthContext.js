@@ -29,7 +29,8 @@ export const AuthProvider = ({ children }) => {
     const safeUser = {
       _id: data.user._id,
       name: data.user.name,
-      email: data.user.email
+      email: data.user.email,
+      role: data.user.role
     };
 
     localStorage.setItem("token", data.token);

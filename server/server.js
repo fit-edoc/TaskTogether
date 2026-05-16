@@ -11,8 +11,11 @@ const taskRoutes = require("./routes/taskRoute");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use(express.json());
 app.use(cors({
-  origin:"*",
-  credentials:true
+  origin: [
+    "http://localhost:3000",
+    "https://task-together-ethara.vercel.app"
+  ],
+  credentials: true
 }));
 
 // routes
